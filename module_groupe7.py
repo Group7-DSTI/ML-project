@@ -1,89 +1,40 @@
-#!/usr/bin/env python
-# coding: utf-8
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.svm import SVR
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+import nltk
+import matplotlib.pyplot as plt
+from imblearn.over_sampling import RandomOverSampler
+from nltk.corpus import words as english_words
+import string
+import re
+from sklearn.model_selection import learning_curve
+from xgboost import XGBRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.neural_network import MLPRegressor
+nltk.download('punkt')
+nltk.download('words')
 
-# In[10]:
-
-
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-def read_tsv(tsv_path: str,pd):
-    """
-    Reads a CSV file into a DataFrame.
-
-    Args:
-        tsv_path (str): The path to the CSV file to be read.
-        pd: pandas as pd
-    """
-
-    try:
-
-        # Open the CSV file in read mode and store the file object in the variable f.
-        # The 'latin-1' encoding is used to ensure that the file is read correctly.
-        with open(tsv_path, encoding='latin-1') as f:
-
-            # Read the CSV file from the file object f into a DataFrame object named df.
-            # The 'sep='\t' argument specifies that the separator is a tab character.
-            df = pd.read_csv(f, sep='\t')
-
-    except Exception as e:
-
-        # Re-raise the exception with a more descriptive error message.
-        # This will provide more context to the user about the error that occurred.
-        raise Exception(f"Error reading CSV file: {tsv_path}") from e
-
-    # Return the DataFrame object df.
-    return df
-
-
+def preprocess_data(train_file_path, test_file_path, valid_file_path, valid_sub_file_path):
+    # Lecture des fichiers
+    df = pd.read_csv(train_file_path, delimiter='\t', encoding='latin1')
+    test_data = pd.read_csv(test_file_path, delimiter='\t', encoding='latin1')
+    validation_data = pd.read_csv(valid_file_path, delimiter='\t', encoding='latin1')
+    v1 = pd.read_csv(valid_sub_file_path, header=1, names=['prediction_id', 'predicted_score'])
     
-
-def conversion_tsv_to_csv(tsv_path, csv_path, pd):
-    """
-    Convert a TSV file to a CSV file.
-
-    Args:
-        tsv_path (str): The path to the TSV file to convert.
-        csv_path (str): The path to the CSV file to create.
-        pd: pandas as pd.
-    """
-
-    # List of encodings to try
-    encodings = ["latin-1", "utf-8", "utf-16"]
-
-    # Try all encodings
-    for encoding in encodings:
-        try:
-            # Load the TSV file into a DataFrame
-            df = pd.read_csv(tsv_path, sep='\t', encoding=encoding)
-
-            # Save the DataFrame to a CSV file
-            df.to_csv(csv_path, index=False)
-
-            # Print a success message
-            print(f"The file was read successfully with the encoding: {encoding}")
-
-            # Break out of the loop
-            break
-        except UnicodeDecodeError:
-            # Print an error message
-            print(f"Failed to read with the encoding: {encoding}")
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-
-# In[ ]:
-
-
-
-
+    # Fusion avec les données de validation
+    validation_data = pd.merge(v1, validation_data, left_on='prediction_id', right_on='domain1_predictionid')
+    
+    # Suppression des colonnes inutiles dans le DataFrame d'entraînement
+    df = df.drop(columns=['rater1_domain1','rater2_domain1','rater3_domain1','rater1_domain2','rater2_domain2',
+                          'rater1_trait1','rater1_trait2','rater1_trait3','rater1_trait4','rater1_trait5',
+                          'rater1_trait6','rater2_trait1','rater2_trait2','rater2_trait3','rater2_trait4',
+                          'rater2_trait5','rater2_trait6','rater3_trait1','rater3_trait2','rater3_trait3',
+                          'rater3_trait4','rater3_trait5','rater3_trait6'])
+    
+    return df, test_data, validation_data

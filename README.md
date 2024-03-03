@@ -35,7 +35,7 @@ In the event of challenges arising during dataset analysis, there is the option 
 - [Pascal Dissivouloud](https://github.com/Pascal-Dissi)
 - [Horlain](https://github.com/Horlain)
 - [Denis-SOH](https://github.com/Denis-SOH)
-- [Aurelie]
+- [Aurelie](https://github.com/AurerlieMassop)
 
 ## Libraries Used (Python 3.11.8)
 

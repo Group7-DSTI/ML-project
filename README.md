@@ -51,5 +51,3 @@ In the event of challenges arising during dataset analysis, there is the option 
 ## Install the required dependencies::
    ```bash
    pip install -r requirements.txt
-
-

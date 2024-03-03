@@ -1,14 +1,15 @@
-# English Quality Prediction Project
+<h1 align="center">English Quality Prediction Project</h1>
 
+![Banner image](Banner_ml-project.png)
 ## Overview
-
-This project revolves around predicting the quality of English essays using a dataset comprising 7000+ meticulously graded essays by specialists. Tackling real-world challenges, the project involves extensive cleaning and exploratory data analysis (EDA) for robust feature engineering. The primary objective is to develop a sophisticated Natural Language Processing (NLP) solution that serves as the cornerstone for an English program at Easy Sailing Language Training. The company's overarching mission is to construct a tool capable of evaluating the English writing proficiency of new students. This tool, aligned with the IELTS grading system, aids prospective students in gauging the necessary time investment to ascend to the next proficiency level.
+<p align="justify">
+This project aims to predict the quality of English essays using a dataset containing over 7000 carefully graded essays. It involves thorough data cleaning and exploratory data analysis to create effective features. The main goal is to develop a sophisticated Natural Language Processing (NLP) solution, essential for Easy Sailing Language Training's English program. The objective is to build a tool aligned with the IELTS grading system, assisting new students in assessing their English writing proficiency and estimating the time required to advance to higher proficiency levels.
+</p>
 
 ## Project Scope
 
 ### Problem Statement
-The project aims to construct an end-to-end pipeline capable of processing essays and assigning a grade that effectively communicates the level of English proficiency. Exploring additional libraries such as Spacy, NLTK, scikit-learn, and HuggingFace is highly encouraged to augment the project's capabilities.
-
+The project aims to construct an end-to-end pipeline capable of processing essays and assigning a grade that effectively communicates the level of English proficiency. Exploring additional libraries such as Spacy, NLTK, scikit-learn.
 ### Reframing Options
 In the event of challenges arising during dataset analysis, there is the option to reframe the problem as a classification task (e.g., poor, average, great).
 
@@ -35,7 +36,7 @@ In the event of challenges arising during dataset analysis, there is the option 
 - [Pascal Dissivouloud](https://github.com/Pascal-Dissi)
 - [Horlain](https://github.com/Horlain)
 - [Denis-SOH](https://github.com/Denis-SOH)
-- [Aurelie]
+- [Aurelie](https://github.com/AurerlieMassop)
 
 ## Libraries Used (Python 3.11.8)
 

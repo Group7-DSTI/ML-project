@@ -27,8 +27,6 @@ In the event of challenges arising during dataset analysis, there is the option 
    - Train a model using the provided dataset to predict essay ratings.
    - Evaluate the model's performance using relevant metrics.
 
-4. **Deployment:**
-   - Develop a deployable solution that seamlessly integrates the trained model into an end-to-end pipeline.
 
 ## Contributors
 
